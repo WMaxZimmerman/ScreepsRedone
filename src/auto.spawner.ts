@@ -1,6 +1,7 @@
 import { roomManager } from "./room.manager";
 
 export const autospawn = function(spawn: Spawn) {
+    let roomMngr = new roomManager();
     if (spawn.spawning) {
         var spawningCreep = Game.creeps[spawn.spawning.name];
         spawn.room.visual.text(
@@ -25,10 +26,10 @@ export const autospawn = function(spawn: Spawn) {
     // if (workerLvl >= 5) workerBody = [WORK,CARRY,MOVE,WORK,CARRY,MOVE,WORK,CARRY,MOVE,WORK,CARRY,MOVE,WORK,CARRY,MOVE];
 
     if (harvesters.length < roleCap && spawn.room.energyAvailable >= workerCost) {
-        roomManager.spawnWorker(spawn, "harvester", workerLvl);
+        roomMngr.spawnWorker(spawn, "harvester", workerLvl);
     } else if (upgraders.length < roleCap && spawn.room.energyAvailable >= workerCost) {
-        roomManager.spawnWorker(spawn, "upgrader", workerLvl);
+        roomMngr.spawnWorker(spawn, "upgrader", workerLvl);
     } else if (builders.length < roleCap && spawn.room.energyAvailable >= workerCost) {
-        roomManager.spawnWorker(spawn, "builder", workerLvl);
+        roomMngr.spawnWorker(spawn, "builder", workerLvl);
     }
 }
